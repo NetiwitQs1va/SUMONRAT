@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💌 SUMONRAT 💌</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Mali', sans-serif, 'itim';
+            background: linear-gradient(45deg, #ffb3d9, #ff99cc, #ffb3e6, #ffc6f0);
+            background-size: 400% 400%;
+            animation: bgMove 8s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        @keyframes bgMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        /* Letter Envelope */
+        .envelope {
+            position: relative;
+            background: #fff;
+            border: 3px solid #ff69b4;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .envelope:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.4);
+        }
+        
+        .envelope-top {
+            font-size: 1.5rem;
+            color: #ff1493;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Pixel Art Name using Table */
+        .pixel-container {
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        .pixel-name {
+            margin: 0 auto;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        
+        .pixel {
+            width: 10px;
+            height: 10px;
+            transition: all 0.1s ease;
+        }
+        
+        /* Colors for Hello Kitty theme */
+        .p { background-color: #ff69b4; } /* Pink */
+        .w { background-color: #ffffff; border: 1px solid #ffb3d9; } /* White */
+        .e { background-color: transparent; } /* Empty */
+        
+        /* Animation for pixels */
+        .pixel.animate {
+            animation: pixelPop 0.4s ease-out forwards;
+        }
+        
+        @keyframes pixelPop {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Letter Content (Hidden initially) */
+        .letter-content {
+            display: none;
+            background: #fff;
+            border: 3px solid #ff69b4;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .letter-header {
+            color: #ff1493;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed #ff69b4;
+        }
+        
+        .love-message {
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeInMessage 1s ease-out forwards;
+        }
+        
+        .love-message:nth-child(2) { animation-delay: 0.2s; }
+        .love-message:nth-child(3) { animation-delay: 0.4s; }
+        .love-message:nth-child(4) { animation-delay: 0.6s; }
+        .love-message:nth-child(5) { animation-delay: 0.8s; }
+        .love-message:nth-child(6) { animation-delay: 1s; }
+        
+        @keyframes fadeInMessage {
+            to { opacity: 1; }
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px dashed #ff69b4;
+            color: #ff1493;
+            font-style: italic;
+        }
+        
+        .click-hint {
+            color: #ff69b4;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Hello Kitty decorations */
+        .kitty-decoration {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .kitty-1 { top: 10px; right: 20px; animation-delay: 0s; }
+        .kitty-2 { bottom: 10px; left: 20px; animation-delay: 1s; }
+        .kitty-3 { top: 50%; right: 10px; animation-delay: 2s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pixel {
+                width: 8px;
+                height: 8px;
+            }
+            
+            .envelope {
+                padding: 20px;
+            }
+            
+            .love-message {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .pixel {
+                width: 6px;
+                height: 6px;
+            }
+            
+            .envelope {
+                padding: 15px;
+            }
+            
+            .love-message {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="envelope" id="envelope" onclick="openLetter()">
+            <div class="kitty-decoration kitty-1">🎀</div>
+            <div class="kitty-decoration kitty-2">🐱</div>
+            <div class="kitty-decoration kitty-3">💕</div>
+            
+            
+            <div class="pixel-container">
+                <table class="pixel-name" id="pixelName">
+                    <tr>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel e"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel e"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel e"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td>
+                    </tr>
+                    <tr>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel e"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td>
+                    </tr>
+                    <tr>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel e"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel e"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td>
+                    </tr>
+                    <tr>
+                        <td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel e"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td>
+                    </tr>
+                    <tr>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel e"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel e"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel e"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td>
+                        <td class="pixel e"></td>
+                        <td class="pixel e"></td><td class="pixel e"></td><td class="pixel p"></td><td class="pixel e"></td><td class="pixel e"></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="click-hint">
+                💖 คลิกเพื่อเปิดจดหมายรัก 💖
+            </div>
+        </div>
+        
+        <div class="letter-content" id="letterContent">
+            <div class="letter-header">
+                จดหมายรักถึงแฟนคนน่ารัก
+            </div>
+            
+            <div class="love-message">
+                เธอ เธอรู้มั้ยเค้าโคตรรักเลย รักมากมาย จนทำจดหมายนี้ให้เธอเลย เค้ารักแมวเธอด้วย แม่เธอใจดีมาก ตายายเธอด้วย
+                เธอสวยได้แม่นะรู้เปล่า อิจฉาตัวเองเลย ได้แฟนสวย รักกันไปนานๆนะเธอ เราจะได้ไปเที่ยวด้วยกัน ทำไรด้วยกัน 
+                ทำในสิ่งที่เรายังไม่เคยทำมาก่อน และเรามาทำให้ฝันของเราสองสำเร็จกันนะ จุ๊บๆ
+            </div>
+            
+            <div class="signature">
+                จาก<br>
+                คนที่รักเธอมากที่สุดในโลก
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let letterOpened = false;
+        
+        function openLetter() {
+            if (!letterOpened) {
+                // Animate pixels first
+                const pixels = document.querySelectorAll('.pixel.p');
+                pixels.forEach((pixel, index) => {
+                    setTimeout(() => {
+                        pixel.classList.add('animate');
+                    }, index * 20);
+                });
+                
+                // Show letter content after pixel animation
+                setTimeout(() => {
+                    document.getElementById('letterContent').style.display = 'block';
+                    document.getElementById('envelope').style.transform = 'scale(0.8)';
+                    document.getElementById('envelope').style.opacity = '0.7';
+                }, 1000);
+                
+                letterOpened = true;
+            }
+        }
+        
+        // Add click effects
+        document.addEventListener('click', function(e) {
+            if (letterOpened) {
+                const hearts = ['🐱', '💕', '🎀', '🌸'];
+                const randomHeart = hearts[Math.floor(Math.random() * hearts.length)];
+                
+                const kitty = document.createElement('div');
+                kitty.innerHTML = randomHeart;
+                kitty.style.position = 'fixed';
+                kitty.style.left = e.clientX + 'px';
+                kitty.style.top = e.clientY + 'px';
+                kitty.style.fontSize = '1.5rem';
+                kitty.style.pointerEvents = 'none';
+                kitty.style.zIndex = '1000';
+                kitty.style.animation = 'kittyBounce 1s ease-out forwards';
+                
+                document.body.appendChild(kitty);
+                
+                setTimeout(() => {
+                    kitty.remove();
+                }, 1000);
+            }
+        });
+        
+        // Add kitty bounce animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes kittyBounce {
+                0% {
+                    transform: scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1.2) rotate(180deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1) rotate(360deg) translateY(-50px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
